@@ -15,11 +15,9 @@ class CreatePostCategoryDetailsTable extends Migration
     {
         Schema::create('post_category_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
-            $table->integer('category_id');
+            $table->integer('post_id')->index();
+            $table->integer('category_id')->index();
             $table->timestamps();
-
-            $table->index(['post_id', 'category_id']);
         });
     }
 

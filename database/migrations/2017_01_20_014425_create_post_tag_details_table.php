@@ -15,11 +15,10 @@ class CreatePostTagDetailsTable extends Migration
     {
         Schema::create('post_tag_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
-            $table->integer('tag_id');
+            $table->integer('post_id')->index();
+            $table->integer('tag_id')->index();
             $table->timestamps();
 
-            //$table->index(['post_id', 'tag_id']);
         });
     }
 

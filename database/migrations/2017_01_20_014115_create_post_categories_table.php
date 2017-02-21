@@ -15,12 +15,13 @@ class CreatePostCategoriesTable extends Migration
     {
         Schema::create('post_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title')->nullable();
-            $table->text('description')->nullable();
-            $table->integer('parent')->nullable();
-            $table->timestamps();
 
-            //$table->index(['title', 'description','parent']);
+            $table->string('title')->index()->nullable();
+            $table->string('description')->index()->nullable();
+            $table->integer('parent')->default(0)->nullable();
+            $table->longText('option')->nullable();
+
+            $table->timestamps();
         });
     }
 
