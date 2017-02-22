@@ -1,0 +1,88 @@
+//========= Controllers ===============
+//=====================================
+php artisan make:controller Admin/PhotoController
+php artisan make:model Models/Admin/Photo
+composer dump-autoload
+=========================
+Route::get('admin', 'Admin\AdminController@getHome');
+
+Route::group(['prefix' => 'admin',
+'middleware' => 'auth', 'namespace' => 'Admin'],
+function() {
+Route::get('/', 'AdminController@getHome');
+….
+});
+
+
+=========================
+Route::get('profile', 'UserController@show')->middleware('auth');
+
+//========= End Controllers ===============
+//=====================================
+
+
+//====== session ==========
+//=========================
+php artisan session:table
+php artisan migrate
+
+//========================================================
+//Storing Data :
+// Via a request instance...
+$request->session()->put('key', 'value');
+
+// Via the global helper...
+session(['key' => 'value']);
+
+$request->session()->flash('status', 'Task was successful!');
+
+$request->session()->reflash();
+$request->session()->keep(['username', 'email']);
+//========================================================
+
+//Deleting Data
+$request->session()->forget('key');
+
+$request->session()->flush();
+//========================================================
+
+// Retrieving Data================
+    $value = $request->session()->get('key', 'default');
+
+    // Retrieve a piece of data from the session...
+    $value = session('key');
+
+    // Specifying a default value...
+    $value = session('key', 'default');
+
+//====== end session ======
+//=========================
+ $this->validate($request, [
+    'role_id' => 'required',
+    'phone' => 'required',
+    'name' => 'required|max:255',
+    'email' => 'required|email|max:255',
+]);
+
+
+
+//========== Middleware ==============
+======================================
+php artisan make:middleware CheckAge
+
+=======================
+if ($request->age <= 200) {
+            return redirect('home');
+        }
+
+        return $next($request);
+========================
+$response = $next($request);
+
+        // Perform action
+
+        return $response;
+=========================
+
+//==========End Middleware ==============
+======================================
