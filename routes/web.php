@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin');
 });
+
+
+
+Route::get('/a/{id}', function ($id) {
+    return $id;
+})->middleware('myauth');
+
+
+
